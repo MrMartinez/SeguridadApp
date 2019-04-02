@@ -1,0 +1,44 @@
+﻿@model SeguridadApp.Models.Agente
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div class="row">
+    <div class="col s2">
+        <img src="@Model.Foto" alt="Foto de Agente @Model.Nombres" width="120" height="160" />
+    </div>
+
+    <div class="col s8">
+        <table class="centered responsive-table">
+
+            <tr>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Nombres</th>
+                <th>Cedula</th>
+                <th>Rango</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Telefono</th>
+            </tr>
+            <tr>
+                <td>@Model.Apellido1</td>
+                <td>@Model.Apellido2</td>
+                <td>@Model.Nombres</td>
+                <td>@Model.Cedula</td>
+                <td>@Model.Rango</td>
+                <td>@Model.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@Model.Telefono</td>
+                <td>
+                    <a href="/Agentes/Editar/@Model.Id"><i class="fas fa-user-edit"></i> Editar </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div style="text-align:right">
+
+        @Html.ActionLink("Regresar","Index", null, new { @class = " col s12  actionLinkReportar" })
+</div>

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Crear Agente";
+}
+<br />
+<br />
+<br />
+<br />
+
+<hr />
+<h4 style="text-align:center">Creación de nuevo agente</h4>
+<hr />
+<br />
+<br />
+<br />
+<div class="row">
+    <form class="col s12" action="Create" method="post">
+      <div class="row">
+          <div class="col s2">
+              <img src="~/Fotos/Police.jpg" alt="Alternate Text" class="responsive-img"/>
+              <input type="file" name="uploadFoto" value="Subir foto" />
+          </div>
+          <div class="col s10">
+              <div class="row">
+                  <div class="input-field col s6">
+                      <input placeholder="Primer Apellido" id="apellido1" name="apellido1" type="text" class="validate">
+                      <label for="Apellido1" style="font-size:larger">Primer Apellido</label>
+                  </div>
+                  <div class="input-field col s6">
+                      <input placeholder="Segundo Apellido" id="apellido2" name="apellido2" type="text" class="validate">
+                      <label for="Apellido2" style="font-size:larger">Segundo Apellido</label>
+                  </div>
+                  <div class="input-field col s6">
+                      <input placeholder="Nombres" id="nombres" name="nombres" type="text" class="validate">
+                      <label for="nombres" style="font-size:larger">Nombres</label>
+                  </div>
+
+              </div>
+              <div class="row">
+                  <div class="input-field col s6">
+                      <input placeholder="Cedula" id="cedula" name="cedula" type="text" class="validate">
+                      <label for="cedula" style="font-size:larger">Cedula <i class="far fa-id-card"></i></label>
+                  </div>
+                  <div class="input-field col s6">
+                      <input placeholder="Rango" id="rango" name="rango" type="text" class="validate">
+                      <label for="rango" style="font-size:larger">Rango del Agente</label>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s6">
+                          <input placeholder="Telefono" id="telefono" name="telefono" type="tel" class="validate">
+                          <label for="telefono" style="font-size:larger">Telefono <i class="fas fa-mobile-alt"></i></label>
+                      </div>
+                      <div class="input-field col s6">
+                          <input placeholder="Fecha Nacimiento" id="fechaNacimiento" name="fechaNacimiento" type="text" class="validate">
+                          <label for="fechaNacimiento" style="font-size:larger">Nacimiento <i class="far fa-calendar-alt"></i></label>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="row">
+                  <div class="col s12">
+                      <div class="input-field inline">
+                          <button class="btn waves-effect waves-light" type="submit" name="action">
+                              Guardar
+                              <i class="material-icons right">send</i>
+                          </button>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </form>
+</div>
