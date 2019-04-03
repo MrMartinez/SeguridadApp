@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SeguridadApp.Models.Agente>
+﻿@model IEnumerable<SeguridadApp.ViewModels.AgenteRangoViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Listado de Agentes HDSSD SEMMA</h3>
 <div class="row">
     @Html.ActionLink("         Agregar nuevo agente ", "Create", null, new { @class = "waves-effect waves-light btn-large col s12  actionLinkReportar" })
 </div><br />
@@ -15,7 +15,6 @@
             <th>Nombres</th>
             <th>Cedula</th>
             <th>Rango</th>
-            <th>Fecha Nacimiento</th>
             <th>Telefono</th>
             <th>Foto</th>
 
@@ -25,23 +24,23 @@
         @foreach (var item in Model)
         {
         <tr>
+         
             <td>@item.Apellido1</td>
             <td>@item.Apellido2</td>
             <td>@item.Nombres</td>
             <td>@item.Cedula</td>
-            <td>@item.Rango</td>
-            <td>@item.FechaNacimiento</td>
+            <td>@item.DescripcionRango</td>
             <td>@item.Telefono</td>
             <td><img class="responsive-img" src="@item.Foto" width="30" height="30"></td>
             <td>
-                <a href="/Agentes/Detalle/@item.Id"><i class="far fa-eye"></i> Ver </a>
+                <a href="/Agentes/Detalle/@item.AgenteId"><i class="far fa-eye"></i> Ver </a>
             </td>
             <td>
-                <a href="/Agentes/Editar/@item.Id"><i class="fas fa-user-edit"></i> Editar </a>
+                <a href="/Agentes/Editar/@item.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
 
             </td>
             <td>
-                <a href="/Agentes/Detalle/@item.Id"><i class="far fa-trash-alt"></i> Eliminar </a>
+                <a href="/Agentes/Detalle/@item.AgenteId"><i class="far fa-trash-alt"></i> Eliminar </a>
             </td>
             @*<td>@Html.ActionLink("Detalle", "Detalle", new { id = item.Id }) </td>*@
    

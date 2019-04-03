@@ -1,19 +1,19 @@
-﻿@model SeguridadApp.Models.Agente
+﻿@model SeguridadApp.ViewModels.AgenteRangoViewModel
 @{
     ViewBag.Title = "Detalle";
 }
 
-<h2>Detalle</h2>
-
+<br />
+<hr />
 <div class="row">
-    <div class="col s2">
-        <img src="@Model.Foto" alt="Foto de Agente @Model.Nombres" width="120" height="160" />
+    <div class="col s3">
+        <img src="@Model.Foto" alt="Foto de Agente @Model.Nombres" width="200" height="200" />
     </div>
 
-    <div class="col s8">
-        <table class="centered responsive-table">
-
+    <div class="col s9">
+        <table class="responsive-table">
             <tr>
+                <th>Agente ID </th>
                 <th>Primer Apellido</th>
                 <th>Segundo Apellido</th>
                 <th>Nombres</th>
@@ -23,22 +23,23 @@
                 <th>Telefono</th>
             </tr>
             <tr>
+                <td>@Model.AgenteId</td>
                 <td>@Model.Apellido1</td>
                 <td>@Model.Apellido2</td>
                 <td>@Model.Nombres</td>
                 <td>@Model.Cedula</td>
-                <td>@Model.Rango</td>
+                <td>@Model.DescripcionRango</td>
                 <td>@Model.FechaNacimiento.ToString("dd/MM/yyyy")</td>
                 <td>@Model.Telefono</td>
                 <td>
-                    <a href="/Agentes/Editar/@Model.Id"><i class="fas fa-user-edit"></i> Editar </a>
+                    <a href="/Agentes/Editar/@Model.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
                 </td>
             </tr>
         </table>
     </div>
 
 </div>
-<div style="text-align:right">
+<div style="text-align:right; margin-right:22px">
 
-        @Html.ActionLink("Regresar","Index", null, new { @class = " col s12  actionLinkReportar" })
+    @Html.ActionLink("Regresar", "Index", null, new { @class = " actionLinkReportar" })
 </div>
