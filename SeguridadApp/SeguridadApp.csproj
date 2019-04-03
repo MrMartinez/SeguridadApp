@@ -109,6 +109,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SQLDataAccessHelper.cs" />
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Rango.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

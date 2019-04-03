@@ -11,8 +11,11 @@ namespace SeguridadApp.ViewModels
         public int AgenteId { get; set; }
         public int RangoId { get; set; }
         public int MyProperty { get; set; }
+        [Display(Name ="1er. Apellido")]
         public string Apellido1 { get; set; }
+        [Display(Name ="2do. Apellido")]
         public string Apellido2 { get; set; }
+        [Display(Name ="Nombres")]
         public string Nombres { get; set; }
         public long Cedula { get; set; }
         public long Telefono { get; set; }
