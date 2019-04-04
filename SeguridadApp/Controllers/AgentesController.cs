@@ -4,6 +4,7 @@ using SeguridadApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -18,16 +19,17 @@ namespace SeguridadApp.Controllers
         CultureInfo culture = new CultureInfo("en-US"); //Para manejar el formato de la fecha cuando la parseo
         SQLDataAccessHelper helper = new SQLDataAccessHelper();
 
+        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\MrMartinez\Documents\Developer\SeguridadApp\SeguridadAppBD.accdb";
 
         // GET: Agentes
         public ActionResult Index()
         {
-            var lista =  helper.executeQuery("SELECT * FROM AGENTES JOIN RANGOS on Agentes.RangoId = Rangos.Id",CommandType.Text,null);
+            var lista =  helper.executeQuery("SELECT * FROM AGENTES INNER JOIN RANGOS on Agentes.RangoId = Rangos.Id", CommandType.Text,null);
             List<AgenteRangoViewModel> agente = lista.Rows.OfType<DataRow>().Select( x => new AgenteRangoViewModel()
             {
                 AgenteId = Convert.ToInt16(x[0].ToString()),
                 RangoId = Convert.ToInt16(x[5].ToString()),
-                Apellido1 = x[1].ToString(),
+                Apellido1 = x[1].ToString(), 
                 Apellido2 = x[2].ToString(),
                 Nombres = x[3].ToString(),
                 Cedula = Convert.ToInt64(x[4].ToString()),
@@ -70,16 +72,16 @@ namespace SeguridadApp.Controllers
             var newFechaNacimiento = DateTime.Parse(form["fechaNacimiento"], culture);
             var newTelefono = Convert.ToInt64(form["telefono"]);
 
-            SqlParameter[] parameters = {
+            OleDbParameter[] parameters = {
 
-                             new SqlParameter("@Apellido1", newApellido1),
-                             new SqlParameter("@Apellido2", newApellido2),
-                             new SqlParameter("@Nombres", newNombres),
-                             new SqlParameter("@Cedula", newCedula),
-                             new SqlParameter("@Rango", newRangoId),
-                             new SqlParameter("@FechaNacimiento", newFechaNacimiento),
-                             new SqlParameter("@Telefono", newTelefono),
-                             new SqlParameter("@Foto", newFoto)
+                             new OleDbParameter("@Apellido1", newApellido1),
+                             new OleDbParameter("@Apellido2", newApellido2),
+                             new OleDbParameter("@Nombres", newNombres),
+                             new OleDbParameter("@Cedula", newCedula),
+                             new OleDbParameter("@Rango", newRangoId),
+                             new OleDbParameter("@FechaNacimiento", newFechaNacimiento),
+                             new OleDbParameter("@Telefono", newTelefono),
+                             new OleDbParameter("@Foto", newFoto)
                            
                     };
 
@@ -93,8 +95,8 @@ namespace SeguridadApp.Controllers
         public ActionResult Editar(int id)
         {            
             var lista = helper.executeQuery("SELECT * FROM AGENTES WHERE Id = " + id + "",CommandType.Text,null);
-            Agente agente = new Agente();
-            agente.Id = id;
+            AgenteRangoViewModel agente = new AgenteRangoViewModel();
+            agente.AgenteId = id;
             agente.Apellido1 =lista.Rows[0][1].ToString();
             agente.Apellido2 = lista.Rows[0][2].ToString();
             agente.Nombres = lista.Rows[0][3].ToString();
@@ -115,42 +117,57 @@ namespace SeguridadApp.Controllers
             return View(agente);
         }
         [HttpPost]
-        public ActionResult Editar(int id, FormCollection form)
+        public ActionResult Editar(int id, Agente agente)
         {
 
-            var newFoto = form["uploadFoto"].ToString();
-            var newApellido1 = form["Apellido1"];
-            var newApellido2 = form["Apellido2"];
-            var newNombres = form["nombres"];
-            var newCedula = Convert.ToInt64(form["cedula"]);
-            var newRangoId = int.Parse(form["RangoId"]);
-            var newFechaNacimiento = DateTime.Parse(form["fechaNacimiento"], culture);
-            var newTelefono = Convert.ToInt64(form["telefono"]);
+            #region no puede hacerlo con el helper porque el tema de Parameters.AddRange; no puede enviarleun rango de parametros con valores. 
+            //var newFoto = form["uploadFoto"].ToString();
+            //var newApellido1 = form["Apellido1"];
+            //var newApellido2 = form["Apellido2"];
+            //var newNombres = form["nombres"];
+            //var newCedula = Convert.ToInt64(form["cedula"]);
+            //var newRangoId = int.Parse(form["RangoId"]);
+            //var newFechaNacimiento = DateTime.Parse(form["fechaNacimiento"], culture);
+            //var newTelefono = Convert.ToInt64(form["telefono"]);
 
-            SqlParameter[] sqlParameters = {
+            //OleDbParameter[] sqlParameters = {
 
-                             new SqlParameter("@Apellido1", newApellido1),
-                             new SqlParameter("@Apellido2", newApellido2),
-                             new SqlParameter("@Nombres", newNombres),
-                             new SqlParameter("@Cedula", newCedula),
-                             new SqlParameter("@Rango", newRangoId),
-                             new SqlParameter("@FechaNacimiento", newFechaNacimiento),
-                             new SqlParameter("@Telefono", newTelefono),
-                             new SqlParameter("@Foto", newFoto)
-            };
+            //                 new OleDbParameter("@Apellido1", agente.Apellido1),
+            //                 new OleDbParameter("@Apellido2", agente.Apellido2),
+            //                 new OleDbParameter("@Nombres", agente.Nombres),
+            //                 new OleDbParameter("@Cedula", agente.Cedula),
+            //                 new OleDbParameter("@Rango", agente.RangoId),
+            //                 new OleDbParameter("@FechaNacimiento", agente.FechaNacimiento),
+            //                 new OleDbParameter("@Telefono", agente.Telefono),
+            //                 //new OleDbParameter("@Foto", newFoto)
+            //};
 
-            helper.executeNonQuery(@"UPDATE Agentes SET Apellido1 = @Apellido1, Apellido2 = @Apellido2, Nombres = @Nombres, Cedula = @Cedula,
-                                                                    RangoId = @Rango, FechaNacimiento = @FechaNacimiento, Telefono =@Telefono,
-                                                                    Foto = @Foto WHERE ID = '" + id + "'",CommandType.Text, sqlParameters);
+            //helper.executeNonQuery(@"UPDATE Agentes SET Apellido1 = @Apellido1, Apellido2 = @Apellido2, Nombres = @Nombres, Cedula = @Cedula, 
+            //                                            RangoID = @Rango, FechaNacimiento = @FechaNacimiento, Telefono =@Telefono 
+            //                                        WHERE ID = '" + id + "'", CommandType.Text, sqlParameters);
 
-           
-     
+            #endregion
+            using (OleDbConnection conn = new OleDbConnection(connectionString))
+            {
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+
+                cmd.CommandText = "UPDATE Agentes SET Apellido1 = '"+agente.Apellido1+"', Apellido2 = '"+agente.Apellido2+"', " +
+                    "                                   Nombres = '"+agente.Nombres+"', Cedula = "+agente.Cedula+", RangoId= "+agente.RangoId+"," +
+                    "                                   Fechanacimiento = '"+agente.FechaNacimiento+"', Telefono = "+agente.Telefono+", Foto = '"+agente.Foto+"'" +
+                    "                                   WHERE ID = "+id+"";
+
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
             return RedirectToAction("Index");
         }
 
         public ActionResult Detalle(int id)
         {
-            var lista = helper.executeQuery("SELECT * FROM AGENTES a JOIN RANGOS r on a.RangoId = r.Id WHERE a.Id = " + id + "",CommandType.Text,null);
+            var lista = helper.executeQuery("SELECT * FROM AGENTES a INNER JOIN RANGOS r on a.RangoId = r.Id WHERE a.Id = " + id + "",CommandType.Text,null);
             AgenteRangoViewModel agente = new AgenteRangoViewModel();
             {
                 agente.AgenteId = int.Parse(lista.Rows[0][0].ToString());

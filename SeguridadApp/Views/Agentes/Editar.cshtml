@@ -1,13 +1,14 @@
-﻿@model SeguridadApp.Models.Agente
+﻿@model SeguridadApp.ViewModels.AgenteRangoViewModel
 @{
     ViewBag.Title = "Editar";
 }
 
 <h4>Modificar Agente</h4>
+@Html.ValidationSummary()
 <br />
 <hr />
-<form action="/Agentes/Editar/@Model.Id" method="post">
-    <input type="text" name="name" value="@Model.Id" hidden />
+<form action="/Agentes/Editar/@Model.AgenteId" method="post">
+    <input type="text" name="name" value="@Model.AgenteId" hidden />
     <div class="row">
         <div class="col s3">
             <img src="@Model.Foto" alt="Alternate Text" width="200" height="200" />
