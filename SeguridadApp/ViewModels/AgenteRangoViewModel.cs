@@ -11,6 +11,7 @@ namespace SeguridadApp.ViewModels
         public int AgenteId { get; set; }
         public int RangoId { get; set; }
         public int MyProperty { get; set; }
+        [Required]
         [Display(Name ="1er. Apellido")]
         public string Apellido1 { get; set; }
         [Display(Name ="2do. Apellido")]

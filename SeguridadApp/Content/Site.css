@@ -36,3 +36,13 @@ main {
     color:white;
     font-weight:normal;
 }
+.pCards {
+    font-size:x-large;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:black;
+}
+.pCardsNombres {
+    font-size: xx-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: dodgerblue;
+}

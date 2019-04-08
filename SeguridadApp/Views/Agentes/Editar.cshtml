@@ -9,71 +9,75 @@
 <hr />
 <form action="/Agentes/Editar/@Model.AgenteId" method="post">
     <input type="text" name="name" value="@Model.AgenteId" hidden />
-    <div class="row">
-        <div class="col s3">
-            <img src="@Model.Foto" alt="Alternate Text" width="200" height="200" />
+    <div class="card">
+        <br />
+        <div class="row">
+            <div class="col s3">
+                <img src="@Model.Foto" alt="Alternate Text" width="200" height="200" />
 
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span>Buscar Foto</span>
-                    <input type="file">
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" name="uploadFoto" type="text">
-                </div>
-            </div>
-            @*<div class="col s3">
+                @*<div class="file-field input-field">
+                    <div class="btn">
+                        <span>Buscar Foto</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" name="uploadFoto" type="text">
+
+                    </div>
+                </div>*@
+                @*<div class="col s3">
                     <img src="@Model.Foto" alt="Alternate Text" width="200" height="200" />
                     <input type="file" name="uploadFoto" value="" />
 
                 </div>*@
-        </div>
-        <div class="col s7">
-
-            <div class="row">
-                <div class="input-field col s4">
-                    <label for="apellido1">Primer Apellido:</label>
-                    <input type="text" id="apellido1" name="Apellido1" value="@Model.Apellido1" />
-
-                </div>
-                <div class="input-field col s4">
-                    <label for="apellido2">Segundo Apellido:</label>
-                    <input type="text" id="apellido2" name="Apellido2" value="@Model.Apellido2" />
-
-                </div>
-                <div class="input-field col s4">
-                    <label for="nombres"> Nombres:</label>
-                    <input type="text" id="nombres" name="Nombres" value="@Model.Nombres" />
-
-                </div>
             </div>
-            <div class="row">
-                <div class="input-field col s4">
-                    <label for="cedula">Cedula:</label>
-                    <input type="text" id="cedula" name="Cedula" value="@Model.Cedula" />
+            <div class="col s7">
 
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="apellido1">Primer Apellido:</label>
+                        <input type="text" id="apellido1" name="Apellido1" value="@Model.Apellido1" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="apellido2">Segundo Apellido:</label>
+                        <input type="text" id="apellido2" name="Apellido2" value="@Model.Apellido2" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="nombres"> Nombres:</label>
+                        <input type="text" id="nombres" name="Nombres" value="@Model.Nombres" />
+
+                    </div>
                 </div>
-                <div class="input-field col s4">
-                    @*                    <label for="rango">Rango:</label>*@
-                    @*<input type="text" id="rango" name="Rango" value="@Model.Rango" />*@
-                    @Html.DropDownList("RangoId", (SelectList)ViewBag.RangoId, "Seleccione un rango")
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="cedula">Cedula:</label>
+                        <input type="text" id="cedula" name="Cedula" value="@Model.Cedula" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        @*                    <label for="rango">Rango:</label>*@
+                        @*<input type="text" id="rango" name="Rango" value="@Model.Rango" />*@
+                        @Html.DropDownList("RangoId", (SelectList)ViewBag.RangoId, "Seleccione un rango")
 
 
-                </div>
-                <div class="input-field col s4">
-                    <label for="telefono">Telefono:</label>
-                    <input type="text" id="telefono" name="Telefono" value="@Model.Telefono" />
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="telefono">Telefono:</label>
+                        <input type="text" id="telefono" name="Telefono" value="@Model.Telefono" />
 
-                </div>
-                <div class="input-field col s4">
-                    <label for="fechaNacimiento">Fecha Nacimiento: </label>
-                    <input type="text" id="fechaNacimiento" name="FechaNacimiento" value="@Model.FechaNacimiento" />
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="fechaNacimiento">Fecha Nacimiento: </label>
+                        <input type="text" id="fechaNacimiento" name="FechaNacimiento" value="@Model.FechaNacimiento" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="text-align:center">
 
+    <div style="text-align:center">
         <input class="btn" type="submit" name="name" value="Actualizar" />
     </div>
 

@@ -1,4 +1,4 @@
-﻿using SeguridadApp.Helpers;
+﻿using DAL.Helpers;
 using SeguridadApp.Models;
 using SeguridadApp.ViewModels;
 using System;
@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 
 
+
 namespace SeguridadApp.Controllers
 {
     public class AgentesController : Controller
@@ -19,28 +20,31 @@ namespace SeguridadApp.Controllers
         CultureInfo culture = new CultureInfo("en-US"); //Para manejar el formato de la fecha cuando la parseo
         SQLDataAccessHelper helper = new SQLDataAccessHelper();
 
-        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\MrMartinez\Documents\Developer\SeguridadApp\SeguridadAppBD.accdb";
-
+        string connectionString = Singleton.Instance._connection;
         // GET: Agentes
         public ActionResult Index()
         {
-            var lista =  helper.executeQuery("SELECT * FROM AGENTES INNER JOIN RANGOS on Agentes.RangoId = Rangos.Id", CommandType.Text,null);
-            List<AgenteRangoViewModel> agente = lista.Rows.OfType<DataRow>().Select( x => new AgenteRangoViewModel()
+
+
+            var lista = helper.executeQuery("SELECT * FROM AGENTES INNER JOIN RANGOS on Agentes.RangoId = Rangos.Id", CommandType.Text, null);
+            List<AgenteRangoViewModel> agente = lista.Rows.OfType<DataRow>().Select(x => new AgenteRangoViewModel()
             {
                 AgenteId = Convert.ToInt16(x[0].ToString()),
                 RangoId = Convert.ToInt16(x[5].ToString()),
-                Apellido1 = x[1].ToString(), 
+                Apellido1 = x[1].ToString(),
                 Apellido2 = x[2].ToString(),
                 Nombres = x[3].ToString(),
                 Cedula = Convert.ToInt64(x[4].ToString()),
                 DescripcionRango = x[10].ToString(),
                 Telefono = Convert.ToInt64(x[7].ToString()),
+                //Foto = x[8].ToString(),
                 Foto = "/Fotos/" + x[3].ToString() + ".jpg",
             }).ToList();
 
-         
+
 
             return View(agente);
+
         }
 
         public ActionResult Create()
@@ -63,7 +67,7 @@ namespace SeguridadApp.Controllers
         public ActionResult Create(FormCollection form)
         {
 
-            var newFoto = form["uploadFoto"].ToString();
+            //var newFoto = form["uploadFoto"].ToString();
             var newApellido1 = form["Apellido1"];
             var newApellido2 = form["Apellido2"];
             var newNombres = form["nombres"];
@@ -71,6 +75,7 @@ namespace SeguridadApp.Controllers
             var newRangoId = form["RangoId"];
             var newFechaNacimiento = DateTime.Parse(form["fechaNacimiento"], culture);
             var newTelefono = Convert.ToInt64(form["telefono"]);
+            var newFoto = "/Fotos/" + form["nombres"].ToString() + ".jpg";
 
             OleDbParameter[] parameters = {
 
@@ -82,7 +87,7 @@ namespace SeguridadApp.Controllers
                              new OleDbParameter("@FechaNacimiento", newFechaNacimiento),
                              new OleDbParameter("@Telefono", newTelefono),
                              new OleDbParameter("@Foto", newFoto)
-                           
+
                     };
 
             helper.executeNonQuery(@"INSERT INTO Agentes (Apellido1, Apellido2, Nombres, Cedula, RangoId, FechaNacimiento, Telefono, Foto ) 

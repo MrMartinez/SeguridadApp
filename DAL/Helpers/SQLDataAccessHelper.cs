@@ -7,16 +7,18 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace SeguridadApp.Helpers
+namespace DAL.Helpers
 {
     public class SQLDataAccessHelper
     {
+        
         string connectionString = string.Empty;
         public SQLDataAccessHelper()
         {
             try
             {
-                connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\MrMartinez\Documents\Developer\SeguridadApp\SeguridadAppBD.accdb";
+                connectionString = Singleton.Instance._connection;
+                //connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\MrMartinez\Documents\Developer\SeguridadApp\SeguridadAppBD.accdb";
 
             }
             catch (Exception)
