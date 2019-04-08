@@ -1,30 +1,24 @@
-﻿
+﻿@model SeguridadApp.Models.Agente
 @{
     ViewBag.Title = "Crear Agente";
 
 }
 <br />
-<br />
-<br />
-<br />
-
 <hr />
 <h4 style="text-align:center">Creación de nuevo agente</h4>
 <hr />
 <br />
-<br />
-<br />
-<div class="row">
-    <form class="col s12" action="Create" method="post">
-        <div class="row">
-            <div class="col s2">
-                <img src="~/Fotos/Police.jpg" alt="Alternate Text" class="responsive-img" />
-                <input type="file" name="uploadFoto" value="Subir foto" />
-            </div>
-            <div class="col s10">
+
+
+
+    <form class="col s12" action="Create" method="post" id="AgentesForm">
+        <div class="card">
+        <br />
+            <div class="container">
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input placeholder="Primer Apellido" id="apellido1" name="apellido1" type="text" class="validate">
+                    <div class="input-field col s6 m6 l6">
+                        <input placeholder="Primer Apellido" id="apellido1" name="apellido1" type="text" class="validate" required oninvalid="setCustomValidity('Debe llenar Apellido')"
+                     oninput="setCustomValidity('')">
                         <label for="apellido1" style="font-size:larger">Primer Apellido</label>
                     </div>
                     <div class="input-field col s6">
@@ -35,68 +29,54 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input placeholder="Nombres" id="nombres" name="nombres" type="text" class="validate">
+                        <input placeholder="Nombres" id="nombres" name="nombres" type="text" class="validate" required oninvalid="setCustomValidity('Falta nombre del Agente')" oninput="setCustomValidity('')">
                         <label for="nombres" style="font-size:larger">Nombres</label>
                     </div>
-                    <div>
-                        @Html.DropDownList("RangoId",(SelectList)ViewBag.RangoId, "Seleccione un Rango")
+                    <div class="input-field col s6 m6 l6">
+                        @Html.DropDownList("RangoId", (SelectList)ViewBag.RangoId, "Seleccione un Rango",new { required = "required"})
+                        
                     </div>
-                    @*<div class="input-field col s6">
-            <select id="rango" name="rango">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Raso</option>
-                <option value="2">Cabo</option>
-                <option value="3">Sargento</option>
-                <option value="4">Sargento Mayor</option>
-                <option value="5">2do. Teniente</option>
-                <option value="6">1er. Teniente</option>
-                <option value="7">Capitan</option>
-                <option value="8">Mayor</option>
-                <option value="9">Teniente Coronel</option>
-                <option value="10">Coronel</option>
-                <option value="11">General de Brigada</option>
-                <option value="12">Mayor General</option>
-                <option value="13">Teniente General</option>
-            </select>
-            <label>Rango</label>
-        </div>*@
+
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input placeholder="Cedula" id="cedula" name="cedula" type="text" class="validate">
+                        <input placeholder="Cedula" id="cedula" name="cedula" type="text" class="validate" required oninvalid="setCustomValidity('Cedula es requerida')" oninput="setCustomValidity('')">
                         <label for="cedula" style="font-size:larger">Cedula <i class="far fa-id-card"></i></label>
                     </div>
                     <div class="input-field col s6">
-                        <input placeholder="Telefono" id="telefono" name="telefono" type="tel" class="validate">
+                        <input placeholder="Telefono" id="telefono" name="telefono" type="tel" class="validate" required oninvalid="setCustomValidity('Debe ingresar un telefono o ponga 0')" oninput="setCustomValidity('')">
                         <label for="telefono" style="font-size:larger">Telefono <i class="fas fa-mobile-alt"></i></label>
                     </div>
-                    @*<div class="input-field col s6">
-                            <input placeholder="Rango" id="rango" name="rango" type="text" class="validate">
-                            <label for="rango" style="font-size:larger">Rango del Agente</label>
-                        </div>*@
+
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Fecha Nacimiento" id="fechaNacimiento" name="fechaNacimiento" type="text" class="validate">
+                            <input placeholder="Fecha Nacimiento" id="fechaNacimiento" name="fechaNacimiento" type="text" class="validate" required oninvalid="setCustomValidity('Fecha de nacimiento ')" oninput="setCustomValidity('')">
                             <label for="fechaNacimiento" style="font-size:larger">Nacimiento <i class="far fa-calendar-alt"></i></label>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </div>   
                 <div class="row">
-                    <div class="col s12">
-                        <div class="input-field inline">
-                            <button class="btn " type="submit" name="action">
+                    <div class="col s3 ">
+
+                    </div>
+                    <div class="col s8 m8 l8">
+                        <div class="input-field inline col s12 m2 l12">
+                            <button class="btn col s8 m8 l8" type="submit" name="action">
                                 Guardar
                                 <i class="material-icons right">send</i>
                             </button>
 
                         </div>
                     </div>
+                    <div class="col s4 m4 l4">
+
+                    </div>
                 </div>
-            </div>
-        </div>
+      
     </form>
-</div>
 
 <div style="text-align:right; margin-right:22px">
 
@@ -109,6 +89,9 @@
             $('select').not('.disabled').formSelect();
 
             $('select').material_select();
+
+     
+                  
         });
     </script>
 }

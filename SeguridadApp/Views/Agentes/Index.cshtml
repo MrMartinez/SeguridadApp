@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<SeguridadApp.ViewModels.AgenteRangoViewModel>
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Index";
 }
 
-<h3>Listado de Agentes HDSSD SEMMA</h3>
+<br />
+<hr />
+<hr />
 <div class="row">
     @Html.ActionLink("         Agregar nuevo agente ", "Create", null, new { @class = "waves-effect waves-light btn-large col s12  actionLinkReportar" })
 </div><br />
-<table class="striped responsive-table">
+
+
+@**@<table class="striped responsive-table">
     <thead>
         <tr>
             <th>1er. Apellido</th>
@@ -23,28 +31,28 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-         
-            <td>@item.Apellido1</td>
-            <td>@item.Apellido2</td>
-            <td>@item.Nombres</td>
-            <td>@item.Cedula</td>
-            <td>@item.DescripcionRango</td>
-            <td>@item.Telefono</td>
-            <td><img class="responsive-img" src="@item.Foto" width="30" height="30"></td>
-            <td>
-                <a href="/Agentes/Detalle/@item.AgenteId"><i class="far fa-eye"></i> Ver </a>
-            </td>
-            <td>
-                <a href="/Agentes/Editar/@item.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
+            <tr>
 
-            </td>
-            <td>
-                <a href="/Agentes/Detalle/@item.AgenteId"><i class="far fa-trash-alt"></i> Eliminar </a>
-            </td>
-            @*<td>@Html.ActionLink("Detalle", "Detalle", new { id = item.Id }) </td>*@
-   
-        </tr>
-        }
-    </tbody>
-</table>
+                <td>@item.Apellido1</td>
+                <td>@item.Apellido2</td>
+                <td>@item.Nombres</td>
+                <td>@item.Cedula</td>
+                @*<td>@item.DescripcionRango</td>*@
+                <td>@item.Telefono</td>
+                @*<td><img class="responsive-img" src="@item.Foto" width="30" height="30"></td>
+                <td>
+                    <a href="/Agentes/Detalle/@item.AgenteId"><i class="far fa-eye"></i> Ver </a>
+                </td>
+                <td>
+                    <a href="/Agentes/Editar/@item.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
+
+                </td>
+                <td>
+                    <a href="/Agentes/Detalle/@item.AgenteId"><i class="far fa-trash-alt"></i> Eliminar </a>
+                </td>*@
+                @*<td>@Html.ActionLink("Detalle", "Detalle", new { id = item.Id }) </td>*@
+
+</tr>
+            }
+        </tbody>
+    </table>
