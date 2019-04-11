@@ -38,7 +38,7 @@ namespace SeguridadApp.Controllers
                 DescripcionRango = x[10].ToString(),
                 Telefono = Convert.ToInt64(x[7].ToString()),
                 //Foto = x[8].ToString(),
-                Foto = "/Fotos/" + x[3].ToString() + ".jpg",
+                Foto = "/Seguridad/Fotos/" + x[3].ToString() + ".jpg",
             }).ToList();
 
 
@@ -75,7 +75,7 @@ namespace SeguridadApp.Controllers
             var newRangoId = form["RangoId"];
             var newFechaNacimiento = DateTime.Parse(form["fechaNacimiento"], culture);
             var newTelefono = Convert.ToInt64(form["telefono"]);
-            var newFoto = "/Fotos/" + form["nombres"].ToString() + ".jpg";
+            var newFoto = "/Seguridad/Fotos/" + form["nombres"].ToString() + ".jpg";
 
             OleDbParameter[] parameters = {
 
@@ -109,7 +109,7 @@ namespace SeguridadApp.Controllers
             agente.RangoId = int.Parse(lista.Rows[0][5].ToString());
             agente.FechaNacimiento = DateTime.Parse(lista.Rows[0][6].ToString());
             agente.Telefono = Convert.ToInt64(lista.Rows[0][7].ToString());
-            agente.Foto = "/Fotos/" + lista.Rows[0][3].ToString() + ".jpg";
+            agente.Foto = "/Seguridad/Fotos/" + lista.Rows[0][3].ToString() + ".jpg";
 
             var listaRangos = helper.executeQuery("SELECT * FROM RANGOS", CommandType.Text,null);
             List<Rango> Rangos = listaRangos.Rows.OfType<DataRow>().Select(x => new Rango()
@@ -183,7 +183,7 @@ namespace SeguridadApp.Controllers
                 agente.RangoId = int.Parse(lista.Rows[0][5].ToString());
                 agente.FechaNacimiento = DateTime.Parse(lista.Rows[0][6].ToString(), culture);
                 agente.Telefono = Convert.ToInt64(lista.Rows[0][7].ToString());
-                agente.Foto = "/Fotos/" + lista.Rows[0][3].ToString() + ".jpg";
+                agente.Foto = @"C:\Fotos\" + lista.Rows[0][3].ToString() + ".jpg";
                 agente.DescripcionRango = lista.Rows[0][10].ToString();
             };
             return View(agente);

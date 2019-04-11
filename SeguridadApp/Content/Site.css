@@ -46,3 +46,21 @@ main {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: dodgerblue;
 }
+
+.navBarFixTop {
+    background-color: #141a1f;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 95px;
+    color: #fff;
+}
+.footer {
+    background-color: #141a1f;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 95px;
+    color: #fff;
+    text-align: center;
+}
