@@ -98,6 +98,13 @@
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\Imagenes\logo.jpg" />
     <Content Include="Content\Imagenes\Seguridad.png" />
+    <Content Include="Fotos\Aileen.jpg" />
+    <Content Include="Fotos\Daniel.jpg" />
+    <Content Include="Fotos\Marlenne.jpg" />
+    <Content Include="Fotos\police.jpg" />
+    <Content Include="Fotos\simon.JPG" />
+    <Content Include="Fotos\Welinton.jpg" />
+    <Content Include="Fotos\Wil Blas.jpg" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Content\js\materialize.min.js" />
     <Content Include="Content\Site.css" />
@@ -139,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Fotos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

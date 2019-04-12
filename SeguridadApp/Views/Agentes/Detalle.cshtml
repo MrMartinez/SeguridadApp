@@ -7,63 +7,71 @@
 <hr />
 
 
-<div class="col s4 m4">
-    <h2 class="header">@Model.Apellido1 @Model.Apellido2</h2>
-    <div class="card horizontal">
-        <div class="card-image">
-            <p><img class="responsive-img" src="@Model.Foto" width="30" height="30"></p>
-        </div>
-        <div class="card-stacked">
-            <div class="card-content">
-                <p class="pCardsNombres">@Model.Nombres</p>
-                <p class="pCards">Cedula: @Model.Cedula</p>
-                <p class="pCards">Rango: @Model.DescripcionRango</p>
-                <p class="pCards">Telefono: @Model.Telefono</p>
-            </div>
-            <div class="card-action">
-                <a href="/Agentes/Editar/@Model.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
-                <a href="/Agentes/Detalle/@Model.AgenteId"><i class="far fa-trash-alt"></i> Eliminar </a>
-                <div style="text-align:right; margin-right:22px">
+<h2 class="header">@Model.Apellido1 @Model.Apellido2</h2>
 
-                    @Html.ActionLink("Regresar", "Index", null, new { @class = " actionLinkReportar" })
+<div class="row">
+    <div class="col s3 m3">        
+            <div class="imgCardol">
+                <p><img class="responsive-img" src="@Model.Foto" width="100%" height="100%"></p>
+            </div>   
+    </div>
+    <div class="col s9 m9">
+        <div class="card horizontal">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p class="pCardsNombres">@Model.Nombres</p>
+                    <p class="pCards">Cedula: @Model.Cedula</p>
+                    <p class="pCards">Rango: @Model.DescripcionRango</p>
+                    <p class="pCards">Telefono: @Model.Telefono</p>
+                </div>
+                <div class="card-action">
+                    <a href="/Agentes/Editar/@Model.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
+                    <a href="/Agentes/Detalle/@Model.AgenteId"><i class="far fa-trash-alt"></i> Eliminar </a>
+                    <div style="text-align:right; margin-right:22px">
+
+                        @Html.ActionLink("Regresar", "Index", null, new { @class = " actionLinkReportar" })
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+
 </div>
 
 
+
 @*<div class="row">
-    <div class="col s3">
-        <img src="@Model.Foto" alt="Foto de Agente @Model.Nombres" width="200" height="200" />
-    </div>
+        <div class="col s3">
+            <img src="@Model.Foto" alt="Foto de Agente @Model.Nombres" width="200" height="200" />
+        </div>
 
-    <div class="col s9">
-        <table class="responsive-table">
-            <tr>
-                <th>Agente ID </th>
-                <th>Primer Apellido</th>
-                <th>Segundo Apellido</th>
-                <th>Nombres</th>
-                <th>Cedula</th>
-                <th>Rango</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Telefono</th>
-            </tr>
-            <tr>
-                <td>@Model.AgenteId</td>
-                <td>@Model.Apellido1</td>
-                <td>@Model.Apellido2</td>
-                <td>@Model.Nombres</td>
-                <td>@Model.Cedula</td>
-                <td>@Model.DescripcionRango</td>
-                <td>@Model.FechaNacimiento.ToString("dd/MM/yyyy")</td>
-                <td>@Model.Telefono</td>
-                <td>
-                    <a href="/Agentes/Editar/@Model.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
-                </td>
-            </tr>
-        </table>
-    </div>
+        <div class="col s9">
+            <table class="responsive-table">
+                <tr>
+                    <th>Agente ID </th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Nombres</th>
+                    <th>Cedula</th>
+                    <th>Rango</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Telefono</th>
+                </tr>
+                <tr>
+                    <td>@Model.AgenteId</td>
+                    <td>@Model.Apellido1</td>
+                    <td>@Model.Apellido2</td>
+                    <td>@Model.Nombres</td>
+                    <td>@Model.Cedula</td>
+                    <td>@Model.DescripcionRango</td>
+                    <td>@Model.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                    <td>@Model.Telefono</td>
+                    <td>
+                        <a href="/Agentes/Editar/@Model.AgenteId"><i class="fas fa-user-edit"></i> Editar </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-</div>*@
+    </div>*@

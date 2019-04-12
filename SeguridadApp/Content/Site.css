@@ -64,3 +64,12 @@ main {
     color: #fff;
     text-align: center;
 }
+
+.imgCard {
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    border:1px solid;
+}
