@@ -24,8 +24,6 @@ namespace SeguridadApp.Controllers
         // GET: Agentes
         public ActionResult Index()
         {
-
-
             var lista = helper.executeQuery("SELECT * FROM AGENTES INNER JOIN RANGOS on Agentes.RangoId = Rangos.Id", CommandType.Text, null);
             List<AgenteRangoViewModel> agente = lista.Rows.OfType<DataRow>().Select(x => new AgenteRangoViewModel()
             {
@@ -38,18 +36,13 @@ namespace SeguridadApp.Controllers
                 DescripcionRango = x[10].ToString(),
                 Telefono = Convert.ToInt64(x[7].ToString()),
                 Foto = x[8].ToString(),
-                //Foto = "/Fotos/" + x[3].ToString() + ".jpg",
             }).ToList();
 
-
-
             return View(agente);
-
         }
 
         public ActionResult Create()
         { 
-
             var listaRangos = helper.executeQuery("SELECT * FROM RANGOS", CommandType.Text,null);
             
             List <Rango> Rangos = listaRangos.Rows.OfType<DataRow>().Select(x => new Rango()
@@ -58,7 +51,8 @@ namespace SeguridadApp.Controllers
                 Descripcion = x[1].ToString()
 
             }).ToList();
-            ViewBag.RangoId = new SelectList(Rangos, "Id", "Descripcion");
+
+            ViewBag.RangoId = new SelectList(Rangos, "Id", "Descripcion"); //Para enviar los rangos a la vista CREATE
 
             return View();
         }
@@ -66,14 +60,15 @@ namespace SeguridadApp.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection form, HttpPostedFileBase file)
         {
+            //El formulario se envia con 'enctype="multipart/form-data"' para que reciba el HttpPostedFileBase file que contiene la foto.
             if (file != null)
             {
-                string ruta = Server.MapPath("/Fotos/");
-                ruta += form["nombres"].ToString() + ".jpg";
+                string ruta = Server.MapPath("/Fotos/"); //ruta donde se guardará la foto
+                ruta += form["nombres"].ToString() + ".jpg"; // a la ruta le sumo el nombre del agente (viene del formulario)
                 file.SaveAs(ruta);
 
             }
-            //var newFoto = form["uploadFoto"].ToString();
+            //Asigno variales para las propiedades que recibo desde el formualrio 
             var newApellido1 = form["Apellido1"];
             var newApellido2 = form["Apellido2"];
             var newNombres = form["nombres"];
@@ -83,6 +78,7 @@ namespace SeguridadApp.Controllers
             var newTelefono = Convert.ToInt64(form["telefono"]);
             var newFoto = "/Fotos/" + form["nombres"].ToString() + ".jpg";
 
+            //Las variables las convierto en parametros para agregarlos en el QueryString
             OleDbParameter[] parameters = {
 
                              new OleDbParameter("@Apellido1", newApellido1),
@@ -102,10 +98,11 @@ namespace SeguridadApp.Controllers
             return RedirectToAction("Index");
         }
 
-
         public ActionResult Editar(int id)
         {            
             var lista = helper.executeQuery("SELECT * FROM AGENTES WHERE Id = " + id + "",CommandType.Text,null);
+
+            //Instancio un nuevo modelo para asignarle los valores que recibo del QueryString
             AgenteRangoViewModel agente = new AgenteRangoViewModel();
             agente.AgenteId = id;
             agente.Apellido1 =lista.Rows[0][1].ToString();
@@ -118,15 +115,17 @@ namespace SeguridadApp.Controllers
             agente.Foto = "/Fotos/" + lista.Rows[0][3].ToString() + ".jpg";
 
             var listaRangos = helper.executeQuery("SELECT * FROM RANGOS", CommandType.Text,null);
+            //Igual que el modelo de AgenteRangoViewModel; creo una lista de rangos para enviarla a la vista del Edit
             List<Rango> Rangos = listaRangos.Rows.OfType<DataRow>().Select(x => new Rango()
             {
                 Id = int.Parse(x[0].ToString()),
                 Descripcion = x[1].ToString()
 
             }).ToList();
-            ViewBag.RangoId = new SelectList(Rangos, "Id", "Descripcion");
+            ViewBag.RangoId = new SelectList(Rangos, "Id", "Descripcion",agente.RangoId); // Contiene la lista que será enviada a la vista.
             return View(agente);
         }
+
         [HttpPost]
         public ActionResult Editar(int id, Agente agente, HttpPostedFileBase file)
         {
@@ -187,19 +186,20 @@ namespace SeguridadApp.Controllers
 
         public ActionResult Detalle(int id)
         {
-            var lista = helper.executeQuery("SELECT * FROM AGENTES a INNER JOIN RANGOS r on a.RangoId = r.Id WHERE a.Id = " + id + "",CommandType.Text,null);
+            var agenteResult = helper.executeQuery("SELECT * FROM AGENTES a INNER JOIN RANGOS r on a.RangoId = r.Id WHERE a.Id = " + id + "",CommandType.Text,null);
+            //Instancio un ViewModel con los datos del QueryString
             AgenteRangoViewModel agente = new AgenteRangoViewModel();
             {
-                agente.AgenteId = int.Parse(lista.Rows[0][0].ToString());
-                agente.Apellido1 = lista.Rows[0][1].ToString();
-                agente.Apellido2 = lista.Rows[0][2].ToString();
-                agente.Nombres = lista.Rows[0][3].ToString();
-                agente.Cedula = Convert.ToInt64(lista.Rows[0][4].ToString());
-                agente.RangoId = int.Parse(lista.Rows[0][5].ToString());
-                agente.FechaNacimiento = DateTime.Parse(lista.Rows[0][6].ToString(), culture);
-                agente.Telefono = Convert.ToInt64(lista.Rows[0][7].ToString());
-                agente.Foto = "/Fotos/" + lista.Rows[0][3].ToString() + ".jpg";
-                agente.DescripcionRango = lista.Rows[0][10].ToString();
+                agente.AgenteId = int.Parse(agenteResult.Rows[0][0].ToString());
+                agente.Apellido1 = agenteResult.Rows[0][1].ToString();
+                agente.Apellido2 = agenteResult.Rows[0][2].ToString();
+                agente.Nombres = agenteResult.Rows[0][3].ToString();
+                agente.Cedula = Convert.ToInt64(agenteResult.Rows[0][4].ToString());
+                agente.RangoId = int.Parse(agenteResult.Rows[0][5].ToString());
+                agente.FechaNacimiento = DateTime.Parse(agenteResult.Rows[0][6].ToString(), culture);
+                agente.Telefono = Convert.ToInt64(agenteResult.Rows[0][7].ToString());
+                agente.Foto = "/Fotos/" + agenteResult.Rows[0][3].ToString() + ".jpg";
+                agente.DescripcionRango = agenteResult.Rows[0][10].ToString();
             };
             return View(agente);
         }
