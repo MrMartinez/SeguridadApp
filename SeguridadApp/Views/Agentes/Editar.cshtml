@@ -1,36 +1,86 @@
-﻿@model SeguridadApp.Models.Agente
+﻿@model SeguridadApp.ViewModels.AgenteRangoViewModel
 @{
     ViewBag.Title = "Editar";
 }
-
-<h2>Editar</h2>
-
-<form action="/Agentes/Editar/@Model.Id" method="post">
-    <input type="text" name="name" value="@Model.Id" />
-    <div class="row">
-        <div class="col s3">
+<br /><br />
+<h4>Modificar Agente</h4>
+@Html.ValidationSummary()
+<br />
+<hr />
+<form action="~/Agentes/Editar/@Model.AgenteId" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" value="@Model.AgenteId" hidden />
+    <div class="card">
+        <br />
+        <div class="row">
             <div class="col s3">
-                <img src="@Model.Foto" alt="Alternate Text" width="125" height="140" />
-                <input type="file" name="uploadFoto" value="" />
+                <img src="@Model.Foto" alt="Alternate Text" width="200" height="200" />
+                <input type="file" name="file" value="" />
+            </div>
+            <div class="col s7">
 
-            </div>
-        </div>
-        <div class="col s7">
-           
-            <div class="row">
-                Primer Apellido:   <input type="text" name="Apellido1" value="@Model.Apellido1" />
-                Segundo Apellido:   <input type="text" name="Apellido2" value="@Model.Apellido2" />
-                Nombres:   <input type="text" name="Nombres" value="@Model.Nombres" />
-            </div>
-            <div class="row">
-                Cedula:   <input type="text" name="Cedula" value="@Model.Cedula" />
-                Rango:   <input type="text" name="Rango" value="@Model.Rango" />
-                Telefono:   <input type="text" name="Telefono" value="@Model.Telefono" />
-                Fecha Nacimiento: <input type="text" name="FechaNacimiento" value="@Model.FechaNacimiento" />
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="apellido1">Primer Apellido:</label>
+                        <input type="text" id="apellido1" name="Apellido1" value="@Model.Apellido1" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="apellido2">Segundo Apellido:</label>
+                        <input type="text" id="apellido2" name="Apellido2" value="@Model.Apellido2" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="nombres"> Nombres:</label>
+                        <input type="text" id="nombres" name="Nombres" value="@Model.Nombres" />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="cedula">Cedula:</label>
+                        <input type="text" id="cedula" name="Cedula" value="@Model.Cedula" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        @*                    <label for="rango">Rango:</label>*@
+                        @*<input type="text" id="rango" name="Rango" value="@Model.Rango" />*@
+                        @Html.DropDownList("RangoId", (SelectList)ViewBag.RangoId, "Seleccione un rango")
+
+
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="telefono">Telefono:</label>
+                        <input type="text" id="telefono" name="Telefono" value="@Model.Telefono" />
+
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="fechaNacimiento">Fecha Nacimiento: </label>
+                        <input type="text" id="fechaNacimiento" name="FechaNacimiento" value="@Model.FechaNacimiento" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <input type="submit" name="name" value="Actualizar" />
+
+    <div style="text-align:center">
+        <input class="btn" type="submit" name="name" value="Actualizar" />
+    </div>
 
 
 </form>
+<div style="text-align:right">
+    <a href="~/Agentes/">Regresar</a>
+
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $('select').not('.disabled').formSelect();
+
+            $('select').material_select();
+        });
+    </script>
+}

@@ -3,48 +3,57 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>@ViewBag.Title - Seguridad HDSSD</title>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="~/Content/css/materialize.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
+    <nav class="navBarFixTop">
+        <div class="nav-wrapper">
+            <i class="fas fa-shield-alt fa-4x" style="color:#0f8075"></i>
+            @*<div class="w-img-h"><img class="for_default" src="~/Content/Imagenes/Seguridad.png" width="70" height="95" alt="LOGO3123247"></div>*@
+            <ul id="nav-mobile" class="right hide-on-med-and-down"></ul>
         </div>
-    </div>
+    </nav>
 
-    <div class="container body-content">
-        @RenderBody()
+
+    @RenderBody()
+    <div class=" body-content">
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+
+
+
+
+
     </div>
 
+    <footer class="footer">
+
+        Enlaces de interes:
+        <div style="align-content:center">
+            <a class="linksFooter" href="https://hospitalsemmasd.gob.do/">Hospital Docente SEMMA Santo Domingo</a>
+        </div>
+        <div>
+            <a class="linksFooter" href="https://semma.gob.do/">Ars SEMMA</a>
+        </div>
+        © 2019 By MrMartinez
+
+
+    </footer>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/js/materialize.min.js"></script>
+    <script src="~/Scripts/materialize.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>
