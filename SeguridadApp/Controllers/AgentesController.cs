@@ -18,9 +18,9 @@ namespace SeguridadApp.Controllers
     public class AgentesController : Controller
     {
         CultureInfo culture = new CultureInfo("en-US"); //Para manejar el formato de la fecha cuando la parseo
-        SQLDataAccessHelper helper = new SQLDataAccessHelper();
+        SQLDataAccessHelper helper = new SQLDataAccessHelper(); //Instanciando el Helper que tiene los metodos para el CRUD -DAL-
 
-        string connectionString = Singleton.Instance._connection;
+        string connectionString = Singleton.Instance._connection; //Cadena de conexion en un Singleton (Para instanciarla una sola vez)
         // GET: Agentes
         public ActionResult Index()
         {
@@ -37,8 +37,8 @@ namespace SeguridadApp.Controllers
                 Cedula = Convert.ToInt64(x[4].ToString()),
                 DescripcionRango = x[10].ToString(),
                 Telefono = Convert.ToInt64(x[7].ToString()),
-                //Foto = x[8].ToString(),
-                Foto = "/Fotos/" + x[3].ToString() + ".jpg",
+                Foto = x[8].ToString(),
+                //Foto = "/Fotos/" + x[3].ToString() + ".jpg",
             }).ToList();
 
 
