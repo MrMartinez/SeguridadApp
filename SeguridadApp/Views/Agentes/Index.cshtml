@@ -12,13 +12,13 @@
 </div><br />
 
 
-@**@<table class="striped responsive-table">
+
+<table class="striped responsive-table">
     <thead>
         <tr>
             <th>1er. Apellido</th>
             <th>2do. Apellido</th>
             <th>Nombres</th>
-            <th>Cedula</th>
             <th>Rango</th>
             <th>Telefono</th>
             <th>Foto</th>
@@ -33,10 +33,9 @@
                 <td>@item.Apellido1</td>
                 <td>@item.Apellido2</td>
                 <td>@item.Nombres</td>
-                <td>@item.Cedula</td>
                 <td>@item.DescripcionRango</td>
                 <td>@item.Telefono</td>
-                <td><img src="@item.Foto" alt="SIN FOTO" width="30" height="30" /></td>
+                <td><img src="@item.Foto" alt="SIN FOTO" width="50" height="50" /></td>
                 <td>
                     <a href="~/Agentes/Detalle/@item.AgenteId"><i class="far fa-eye"></i> Ver </a>
                 </td>
