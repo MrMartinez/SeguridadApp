@@ -1,5 +1,5 @@
 # SeguridadApp
-Mantenimiento empleados de un Deparamento de Seguridad
+Mantenimiento empleados de un Departamento de Seguridad
 
 Aplicación que relaciona dos tablas, Agentes y Rangos, con una relación muchos a uno.
 
