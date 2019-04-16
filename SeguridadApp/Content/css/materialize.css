@@ -2944,9 +2944,10 @@ ul.staggered-list li {
 }
 
 .page-footer {
-  padding-top: 20px;
-  color: #fff;
-  background-color: #ee6e73;
+    padding-top: 20px;
+    color: #fff;
+    background-color: #141a1f;
+    text-align:center;
 }
 
 .page-footer .footer-copyright {
