@@ -96,7 +96,6 @@
   <ItemGroup>
     <Content Include="Content\css\materialize.css" />
     <Content Include="Content\css\materialize.min.css" />
-    <Content Include="Content\Imagenes\logo.jpg" />
     <Content Include="Content\Imagenes\Seguridad.png" />
     <Content Include="Fotos\Aileen.jpg" />
     <Content Include="Fotos\Daniel.jpg" />
