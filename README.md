@@ -1,7 +1,7 @@
 # SeguridadApp
 Mantenimiento empleados de un Departamento de Seguridad
 
-Aplicación que relaciona dos tablas, Agentes y Rangos, con una relación muchos a uno.
+Aplicación que relaciona dos tablas: Agentes y Rangos, con una relación muchos a uno.
 
 Desarrollo:
 - C#
